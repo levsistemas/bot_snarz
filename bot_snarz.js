@@ -17,7 +17,6 @@ const TOKEN_BOT = process.env.token_bot_stiven;
 Client.once('ready', () => {
     console.log('Bot is ready')
 })
-module.exports = {Client};
 
 // contenido
 Client.on('ready', async ( client ) => {
