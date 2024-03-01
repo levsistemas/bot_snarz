@@ -22,7 +22,7 @@ Client.on('ready', async ( client ) => {
     console.log(`----------------------------------------------------------------------`)
 });
 
-/* Client.on('messageCreate', message => {
+Client.on('messageCreate', message => {
     if(message.author.bot) return;
     if(message.author !== Client.user){
         console.log('ID Autor: ' + message.author + ' - ' + 'Nombre del Bot: ' + Client.user.displayName)
@@ -61,6 +61,6 @@ Client.on('ready', async ( client ) => {
     }
     console.log(`(Username => ${message.author.tag}): ${message.content}`)
     console.log(`(Nickname => ${message.author.globalName}): ${message.content}`)
-}) */
+})
 
 Client.login(TOKEN_BOT);
