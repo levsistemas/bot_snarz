@@ -9,6 +9,7 @@ const keep_alive = require ('./keep_alive.js');
 
 //definir cliente
 const Client = new Discord.Client({ intents: [33539]});
+module.exports = {Client}
 
 //cargar archivo .env
 require('dotenv').config();
