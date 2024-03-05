@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "cors": "^2.8.5",
     "discord.js": "^14.14.1",
     "dotenv": "^16.4.5",
     "moment-timezone": "^0.5.45"
