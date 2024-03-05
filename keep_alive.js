@@ -1,5 +1,5 @@
 var http = require('http');
-
+require('dotenv').config();
 
 const server = http.createServer(function (req, res) {
   const { client, tag, userName} = require('./bot_snarz')
