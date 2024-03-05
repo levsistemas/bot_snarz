@@ -4,8 +4,8 @@ const Discord = require('discord.js');
 const fs = require('fs');
 
 //agregar keep_alive
-//require ('./keep_alive.js');
-const keep_alive = require ('./keep_alive.js');
+require ('./keep_alive.js');
+const moment = require('moment-timezone')
 
 //definir cliente
 const Client = new Discord.Client({ intents: [33539]});
@@ -14,16 +14,18 @@ const Client = new Discord.Client({ intents: [33539]});
 require('dotenv').config();
 const TOKEN_BOT = process.env.token_bot_stiven;
 
-Client.once('ready', () => {
-    console.log('Bot is ready')
-})
-
 // contenido
 Client.on('ready', async ( client ) => {
     console.log(`----------------------------------------------------------------------`)
     console.log(`Estoy listo!!! Hola Mundo, yo soy: ${client.user.tag}`)
     console.log(`Me presento: ${client.user.username}`)
     console.log(`----------------------------------------------------------------------`)
+    console.log('aqui reportandome: ' + client.user.username)
+    module.exports = {
+        tag: client.user.tag,
+        userName: client.user.username,
+        client
+    }
 });
 
 Client.on('messageCreate', message => {
@@ -50,13 +52,37 @@ Client.on('messageCreate', message => {
         message.reply('Mr SNARZ es un boludito calenton, y callado... lo afirmo!!!')
         console.log('Mr SNARZ es un boludito calenton, y callado... lo afirmo!!!')
     }
+    if(message.content === '!hora'){
+        const date = new Date()
+        const dia = date.getDay()
+        const hora = date.getHours()
+        const minutos = date.getMinutes()
+        message.reply('La Hora es: ' + hora + ':' + minutos + ' hs.')
+        console.log('La Hora es: ' + dia + ' ' + hora + ':' + minutos + ' hs.')
+    }
+    if(message.content === '!fecha'){
+        console.log('moments' , moment.tz.guess(message.createdTimestamp.toLocaleString()))
+        const meses = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre']
+        const dias = ['Lunes', 'Martes', 'Miercoles', 'Jueves', 'Viernes', 'Sabado', 'Domingo']
+        const date = new Date()
+        const region = message.createdTimestamp
+        const anio = date.getFullYear()
+        const mes = meses[date.getMonth()]
+        const diaN = date.getDate()
+        const dia = dias[date.getDay()]
+        const hora = date.getHours()
+        const minutos =  date.getMinutes().toString().length == 1 ? '0' + date.getMinutes() :  date.getMinutes()
+        message.reply('La fecha y hora es: ' + dia + ', ' + diaN + ' de ' + mes + ' del ' + anio + ' y son las ' + hora + ':' + minutos + ' hs.')
+        console.log('La Hora es: ' + dia + ' ' + hora + ':' + minutos + ' hs.')
+        // console.log('Horario remoto: ' , new Date(), Date(region) )
+    }
     if(message.content === '!comandos'){
-        message.reply('Los comandos a invocar son: ["!Hola","!Repetir","!Stiven","!SNARZ"]')
-        console.log('Los comandos a invocar son: ["!Hola","!Repetir","!Stiven","!SNARZ"]')
+        message.reply('Los comandos a invocar son: ["!Hola","!Repetir","!Stiven","!SNARZ","!hora","!fecha"]')
+        console.log('Los comandos a invocar son: ["!Hola","!Repetir","!Stiven","!SNARZ","!hora","!fecha"]')
     }
     if(message.content === '!commands'){
-        message.reply('Los comandos a invocar son: ' + '\n' + '\n' + "!Hola" + '\n' + "!Repetir" + '\n' + "!Stiven" + '\n' + "!SNARZ")
-        console.log('Los comandos a invocar son: ' + '\n' + '\n' + "!Hola" + '\n' + "!Repetir" + '\n' + "!Stiven" + '\n' + "!SNARZ")
+        message.reply('Los comandos a invocar son: ' + '\n' + '\n' + "!Hola" + '\n' + "!Repetir" + '\n' + "!Stiven" + '\n' + "!SNARZ" + '\n' + "!hora" + '\n' + "!fecha")
+        console.log('Los comandos a invocar son: ' + '\n' + '\n' + "!Hola" + '\n' + "!Repetir" + '\n' + "!Stiven" + '\n' + "!SNARZ" + '\n' + "!hora" + "\n" + "!fecha")
     }
     if(message.content !==''){
         console.log('Mostrando message: ' + message.content)
@@ -65,6 +91,19 @@ Client.on('messageCreate', message => {
     }
     console.log(`(Username => ${message.author.tag}): ${message.content}`)
     console.log(`(Nickname => ${message.author.globalName}): ${message.content}`)
+
+    
+    if(message.content!=='' && message.author.tag=='snarz1505'){
+        const dt = new Date()
+        console.log('Actual: ' + dt.toLocaleTimeString())
+        console.log('UTC: ' + dt.toUTCString())
+    }
+
+    if(message.content!=='' && message.author.tag=='slipknot_1986'){
+        const dt = new Date()
+        console.log('Actual: ' + dt.toLocaleTimeString())
+        console.log('UTC: ' + dt.toUTCString())
+    }
 })
 
 Client.login(TOKEN_BOT);

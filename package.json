@@ -1,12 +1,12 @@
 {
   "dependencies": {
     "discord.js": "^14.14.1",
-    "dotenv": "^16.4.5"
+    "dotenv": "^16.4.5",
+    "moment-timezone": "^0.5.45"
   },
   "name": "bot_ds_snarz",
   "version": "1.0.0",
   "main": "bot_snarz.js",
-  "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
